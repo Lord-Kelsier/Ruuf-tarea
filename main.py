@@ -8,6 +8,7 @@ def calculate_tiles(vertices: List[Point], solar_panel: Rectangle) -> int:
   """ 
   Funcion recursiva que calcula el numero de paneles que caben en un espacio delimitado por vertices
   """
+  shuffle(vertices)
   max_tiles = 0
   for vertex in vertices:
     fitted_once = False
