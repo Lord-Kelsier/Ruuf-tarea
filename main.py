@@ -58,8 +58,9 @@ def get_max_tiles(roof: Rectangle = None, solar_panel: Rectangle = None) -> None
   return max_tiles
 
 if __name__ == '__main__':
-  roof = Rectangle(50, 7)
+  roof = Rectangle(6, 7)
   solar_panel = Rectangle(3, 2)
-  max_tiles = get_max_tiles(roof, solar_panel)
+  # max_tiles = get_max_tiles(roof, solar_panel)
+  max_tiles = get_max_tiles()
   print(max_tiles)
 
