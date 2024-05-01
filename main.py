@@ -1,8 +1,8 @@
+import math
 from typing import List, Tuple
 from random import shuffle
 from classes import Point, Rectangle
 from tools import get_new_vertices, chop_vertices, does_fit, check_input
-import math
 
 def calculate_tiles(vertices: List[Point], solar_panel: Rectangle) -> int:
   max_tiles = 0
@@ -63,4 +63,3 @@ if __name__ == '__main__':
   # max_tiles = get_max_tiles(roof, solar_panel)
   max_tiles = get_max_tiles()
   print(max_tiles)
-
