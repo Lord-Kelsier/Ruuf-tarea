@@ -5,6 +5,9 @@ from classes import Point, Rectangle
 from tools import get_new_vertices, chop_vertices, does_fit, check_input
 
 def calculate_tiles(vertices: List[Point], solar_panel: Rectangle) -> int:
+  """ 
+  Funcion recursiva que calcula el numero de paneles que caben en un espacio delimitado por vertices
+  """
   max_tiles = 0
   for vertex in vertices:
     fitted_once = False
@@ -21,6 +24,9 @@ def calculate_tiles(vertices: List[Point], solar_panel: Rectangle) -> int:
   return max_tiles
 
 def ask_for_input() -> Tuple[Rectangle, Rectangle]:
+  """
+  Funcion que pide al usuario las dimensiones del techo y del panel solar
+  """
   x = input('Ingrese el ancho del techo: ')
   x = check_input(x, float, 'Ingrese un numero: ')
   y = input('Ingrese el largo del techo: ')
@@ -34,6 +40,9 @@ def ask_for_input() -> Tuple[Rectangle, Rectangle]:
   return roof, solar_panel
 
 def get_max_tiles(roof: Rectangle = None, solar_panel: Rectangle = None) -> None:
+  """
+  Inicializa los vertices a partir de las dimensiones del techo y llama a la funcion calculate_tiles
+  """
   if not roof or not solar_panel:
     roof, solar_panel = ask_for_input()
   x, y = roof.width, roof.height

@@ -2,6 +2,9 @@ from typing import List
 from classes import Point, Rectangle
 
 def get_new_vertices(vertex: Point, solar_panel: Rectangle , direction: str) -> List[Point]:
+  """
+  Retorna los tres vertices del panel solar (considerando que uno corresponde al vertice del techo)
+  """
   solar_panel_with_rotation = solar_panel
   if direction[2] == 'H':
     solar_panel_with_rotation = Rectangle(solar_panel.height, solar_panel.width)
@@ -19,7 +22,11 @@ def get_new_vertices(vertex: Point, solar_panel: Rectangle , direction: str) -> 
   return new_vertices
 
 def chop_vertices(vertex: Point, new_vertices: List[Point], vertices: List[Point]) -> List[Point]:
-  # cortamos el techo al sacar el vertice y colocar los nuevos vertices del panel solar
+  """
+  Toma los nuevos vertices y en caso de que ya esten presentes en la lista original los elimina.
+  Tambien elimina el vertice donde se coloca el panel solar. En caso de que no esten presentes
+  los agrega a la lista de vertices
+  """
   new_iteration_vertices = vertices.copy()
   new_iteration_vertices.remove(vertex)
   for new_vertex in new_vertices:
@@ -30,7 +37,11 @@ def chop_vertices(vertex: Point, new_vertices: List[Point], vertices: List[Point
   return new_iteration_vertices
 
 def is_vertex_inside(new_vertex: Point, vertices: List[Point]) -> bool:
-  # Buscamos los vertices con componente x e y mayor a los nuevos vertices
+  """
+  Retorna True si el vertice esta dentro de la region delimitada por los vertices
+  Para esto se buscan los vertices arriba y a la derecha del nuevo vertice. Si la cantidad 
+  es par entonces el vertice esta fuera de la region, si es impar entonces esta dentro
+  """
   if new_vertex in vertices:
     return True
   x = new_vertex.x
@@ -42,12 +53,19 @@ def is_vertex_inside(new_vertex: Point, vertices: List[Point]) -> bool:
   return True
 
 def does_fit(new_vertices: List[Point], vertices: List[Point]) -> bool:
+  """
+  Itera sobre todos los nuevos vertices y verifica si todos estan dentro de la region
+  delimitada por los vertices.
+  """
   for new_vertex in new_vertices:
     if not is_vertex_inside(new_vertex, vertices):
       return False
   return True
 
 def check_input(x: str, type_: type, message: str) -> type:
+  """
+  Pregunta por el input del usuario y verifica que sea del tipo correcto
+  """
   try:
     return type_(x)
   except ValueError:
