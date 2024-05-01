@@ -6,7 +6,7 @@ El approach que se utilizó fue tomar el techo y obtener los vertices en el plan
 
 ## Instrucciones de uso
 
-Se le pueden pasar entregar las dimensiones del techo y el panel solar directamente en main, descomentando la linea 63 y comentando la 64 o se pueden entregar por consola que es como viene por defecto.
+Se le pueden pasar entregar las dimensiones del techo y el panel solar directamente en main, descomentando la linea 73 y comentando la 74 o se pueden entregar por consola que es como viene por defecto.
 
 ## Ejeccucion
 
