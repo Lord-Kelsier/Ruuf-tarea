@@ -2,6 +2,7 @@ from typing import List, Tuple
 from random import shuffle
 from classes import Point, Rectangle
 from tools import get_new_vertices, chop_vertices, does_fit, check_input
+import math
 
 def calculate_tiles(vertices: List[Point], solar_panel: Rectangle) -> int:
   max_tiles = 0
@@ -32,34 +33,33 @@ def ask_for_input() -> Tuple[Rectangle, Rectangle]:
   solar_panel = Rectangle(a, b)
   return roof, solar_panel
 
-def main() -> None:
-  roof, solar_panel = ask_for_input()
+def get_max_tiles(roof: Rectangle = None, solar_panel: Rectangle = None) -> None:
+  if not roof or not solar_panel:
+    roof, solar_panel = ask_for_input()
   x, y = roof.width, roof.height
   if solar_panel.height > y and solar_panel.height> x:
-    print(0)
-    return
+    return 0
   if solar_panel.width > y and solar_panel.width > x:
-    print(0)
-    return
+    return 0
   vertices = [
     Point(0, 0),
     Point(x, 0),
     Point(x, y),
     Point(0, y)
   ]
-  max_possible = x * y // (solar_panel.width * solar_panel.height)
+  max_possible = math.floor(x * y / (solar_panel.width * solar_panel.height))
   max_tiles = 0
-  print('Numero maximo de paneles que se pueden colocar:', max_possible)
   for _ in range(20):
     tiles = calculate_tiles(vertices, solar_panel)
     if tiles == max_possible:
       max_tiles = max_possible
       break
     max_tiles = max(max_tiles, tiles)
-  print('Paneles solares encajados: ',tiles)
+  return max_tiles
 
 if __name__ == '__main__':
-  roof = Rectangle(6, 7)
+  roof = Rectangle(50, 7)
   solar_panel = Rectangle(3, 2)
-  main(roof, solar_panel)
+  max_tiles = get_max_tiles(roof, solar_panel)
+  print(max_tiles)
 

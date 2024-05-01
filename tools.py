@@ -44,4 +44,10 @@ def does_fit(new_vertices: List[Point], vertices: List[Point]) -> bool:
   return True
 
 def check_input(x: str, type_: type, message: str) -> type:
-  pass
+  try:
+    return type_(x)
+  except ValueError:
+    print(message)
+    print('para salir presione Ctrl + C')
+    return check_input(input(), type_, message)
+    
